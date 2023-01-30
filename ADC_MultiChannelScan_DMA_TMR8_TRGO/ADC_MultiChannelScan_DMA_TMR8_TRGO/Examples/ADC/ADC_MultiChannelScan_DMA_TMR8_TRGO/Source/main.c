@@ -66,32 +66,23 @@ void ADC_MultiChannelPolling(void);
 
 uint16_t adcData[ADC_CH_SIZE];
 
-void TMR8_CC1_Init(void)
-{
+ void TMR8_TRGO_Init(void)
+ {
     TMR_BaseConfig_T TMR_TimeBaseStruct;
-    TMR_OCConfig_T OCcongigStruct;
 
     RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_TMR8);
 	 
     TMR_TimeBaseStruct.clockDivision = TMR_CLOCK_DIV_1;
     TMR_TimeBaseStruct.countMode = TMR_COUNTER_MODE_UP;
     TMR_TimeBaseStruct.division = 16800;
-    TMR_TimeBaseStruct.period = 1000-1;
+    TMR_TimeBaseStruct.period = 2000-1;
     TMR_ConfigTimeBase(TMR8, &TMR_TimeBaseStruct);
 	 
-    TMR_ConfigOCStructInit(&OCcongigStruct);
-	 
-    OCcongigStruct.mode = TMR_OC_MODE_PWM1;
-    OCcongigStruct.outputState = TMR_OC_STATE_ENABLE;
-    OCcongigStruct.polarity = TMR_OC_POLARITY_LOW;
-    OCcongigStruct.pulse = 500;
-    TMR_ConfigOC1(TMR8, &OCcongigStruct);
-    
-    TMR_ConfigOC1Preload(TMR8, TMR_OC_PRELOAD_ENABLE);
+    TMR_SelectOutputTrigger(TMR8,TMR_TRGO_SOURCE_UPDATE);
+	 	 
     TMR_EnableAutoReload(TMR8);
     TMR_Enable(TMR8);   
-    TMR_EnablePWMOutputs(TMR8);
-}
+ } 
 
 
 /*!
@@ -121,7 +112,7 @@ int main(void)
     /* COM1 init*/
     APM_MINI_COMInit(COM1, &usartConfigStruct);
 	
-	  TMR8_CC1_Init();
+	  TMR8_TRGO_Init();
   
     /* ADC1 initialization */
     ADC_Init();
@@ -214,7 +205,7 @@ void ADC_Init(void)
     adcConfig.continuousConvMode    = DISABLE;
     adcConfig.dataAlign             = ADC_DATA_ALIGN_RIGHT;
     adcConfig.extTrigEdge           = ADC_EXT_TRIG_EDGE_RISING;
-    adcConfig.extTrigConv           = ADC_EXT_TRIG_CONV_TMR8_CC1;
+    adcConfig.extTrigConv           = ADC_EXT_TRIG_CONV_TMR8_TRGO;
     adcConfig.nbrOfChannel          = ADC_CH_SIZE;
     ADC_Config(ADC1, &adcConfig);
 
