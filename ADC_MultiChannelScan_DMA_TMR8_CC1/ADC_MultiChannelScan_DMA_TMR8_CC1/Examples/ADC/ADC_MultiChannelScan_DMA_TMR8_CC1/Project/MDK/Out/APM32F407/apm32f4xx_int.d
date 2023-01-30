@@ -1,0 +1,10 @@
+.\out\apm32f407\apm32f4xx_int.o: ..\..\Source\apm32f4xx_int.c
+.\out\apm32f407\apm32f4xx_int.o: ..\..\Include\main.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\Device\Geehy\APM32F4xx\Include\apm32f4xx.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\CMSIS\Include\core_cm4.h
+.\out\apm32f407\apm32f4xx_int.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\CMSIS\Include\core_cmInstr.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\CMSIS\Include\core_cmFunc.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\CMSIS\Include\core_cmSimd.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\..\..\..\Libraries\Device\Geehy\APM32F4xx\Include\system_apm32f4xx.h
+.\out\apm32f407\apm32f4xx_int.o: ..\..\Include\apm32f4xx_int.h
